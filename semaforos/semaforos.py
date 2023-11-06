@@ -16,16 +16,19 @@ def cliente_chega_com_controle():
         numero_clientes_na_fila += 1
         print(f"Cliente chegou na fila (COM controle). Número de clientes na fila: {numero_clientes_na_fila}")
 
-# Criação de um Lock para controlar o acesso à seção crítica
+# Criação de um Lock para controlar o acesso à seção crítica (garante que uma thread por vez acesse
+# a seção crítica)
 controle_acesso = threading.Lock()
 
-# Criação de threads para clientes chegando SEM controle
+# Criação de threads para clientes chegando SEM controle 
+# conflitos quando várias threads tentam atualizar o número de clientes na fila ao mesmo tempo
 threads_sem_controle = []
 for _ in range(5):
     t = threading.Thread(target=cliente_chega_sem_controle)
     threads_sem_controle.append(t)
 
 # Criação de threads para clientes chegando COM controle
+# garantir que apenas uma thread por vez possa atualizar o número de clientes na fila
 threads_com_controle = []
 for _ in range(5):
     t = threading.Thread(target=cliente_chega_com_controle)

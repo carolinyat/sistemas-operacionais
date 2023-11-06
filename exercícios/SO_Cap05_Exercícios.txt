@@ -1,0 +1,83 @@
+PARTE 1
+
+1.
+Scheduler de Curto Prazo:
+
+Função: O Scheduler de Curto Prazo, também conhecido como escalonador de CPU, decide qual processo em fila de espera será executado pela CPU em um curto período de tempo, alocando recursos de CPU de forma eficiente.
+Dispatcher:
+
+Função: O Dispatcher é responsável por efetivamente iniciar a execução do processo selecionado pelo Scheduler de Curto Prazo. Ele carrega o contexto do processo na CPU e transfere o controle para o processo.
+Latência de Despacho:
+
+2.
+Latência de Despacho é o tempo decorrido desde a escolha do processo pelo escalonador até o início efetivo da execução desse processo pela CPU. Ela é crucial para medir a eficiência do sistema operacional, pois afeta o tempo de resposta dos processos.
+
+3.
+Critérios de Comparação de Algoritmos:
+
+Tempo de Turnaround: Avalia o tempo total que um processo leva desde a submissão até a conclusão, incluindo o tempo de espera e de execução.
+Tempo de Espera: Mede o tempo que um processo passa na fila de espera antes de ser executado pela CPU.
+Utilização da CPU: Avalia o quão efetivamente a CPU é utilizada, ou seja, a fração de tempo que a CPU está ocupada com a execução de processos.
+
+4.
+Principais Algoritmos de Escalonamento de CPU:
+
+FCFS (First-Come, First-Served): Processos são executados na ordem em que chegam, sem prioridades. Simples, mas pode levar a longos tempos de espera para processos de curta duração.
+SJF (Shortest Job First): O processo mais curto em termos de tempo de execução é escolhido primeiro. Minimiza o tempo de espera, mas pode causar inanição para processos longos.
+Round Robin: Os processos são executados em turnos com um pequeno quantum de tempo. É justo, mas pode levar à sobrecarga de troca de contexto.
+Processos CPU-Bound e IO-Bound:
+
+5. 
+Processos CPU-Bound são aqueles que realizam principalmente cálculos intensivos de CPU e não fazem muitas operações de entrada/saída. Eles tendem a exigir mais tempo de CPU.
+Processos IO-Bound são aqueles que realizam operações de entrada/saída frequentemente, como leitura/gravação em disco ou comunicação de rede. Eles passam mais tempo esperando por E/S e menos tempo de CPU.
+
+PARTE 2
+
+a. FCFS (First-Come, First-Served):
+| A | B | C | D | E |
+0   10  11  13  14  19
+
+
+SJF (Shortest Job First):
+| B | D | C | E | A |
+0   1   2   6   11  21
+
+
+PS (Prioridade sem preempção):
+| B | E | A | C | D |
+0   1   6   11  13  14
+
+
+RR (Round Robin com Quantum = 1):
+| A | B | C | D | E | A | C | D | E | A |
+0   1   2   3   4   5   6   7   8   9   10
+
+b. O tempo médio de espera para cada processo nos três algoritmos é:
+
+FCFS: 1.2 milissegundos
+SJF: 4 milissegundos
+Prioridade: 6.2 milissegundos
+
+c. O algoritmo que resulta no menor tempo médio de espera, considerando todos os processos, é o SJF (Shortest Job First).
+
+PARTE 3
+
+1.
+O Priority Scheduling é um algoritmo que atribui prioridades aos processos e executa primeiro aqueles com a prioridade mais alta. Quando o quantum (tempo máximo de execução contínua) é pequeno, os processos têm menos tempo para serem executados antes que o sistema troque para outro processo com uma prioridade maior. Isso pode resultar em muitas trocas de contexto (overhead) e, potencialmente, em baixa eficiência, pois os processos são interrompidos frequentemente, o que pode aumentar o tempo de execução total.
+
+2.
+Multiprocessamento Assimétrico: Nesse tipo de sistema, os processadores têm diferentes papéis e responsabilidades. Alguns processadores podem ser dedicados a tarefas específicas, enquanto outros podem lidar com tarefas gerais. Geralmente, o sistema operacional distribui as tarefas de acordo com a capacidade de processamento de cada processador.
+
+Multiprocessamento Simétrico (SMP - Symmetric Multiprocessing): Em um sistema SMP, todos os processadores são iguais e têm acesso igual à memória e aos recursos do sistema. Os processadores podem executar qualquer tarefa e compartilham igualmente a carga de trabalho. Isso permite uma melhor escalabilidade e utilização eficiente de recursos.
+
+3.
+A afinidade de processador refere-se à capacidade de um sistema operacional permitir que um processo seja executado em um processador específico ou em um subconjunto de processadores em um sistema multiprocessador. Isso pode ser útil em situações em que é desejável otimizar o desempenho, controlar a carga de trabalho ou evitar problemas de cache, por exemplo.
+
+4. 
+A Queda de Memória (Memory Stall) ocorre quando uma CPU precisa esperar que os dados sejam buscados na memória principal antes de poder continuar sua execução. Isso pode atrasar significativamente o processamento de dados. Para evitar isso, as CPUs modernas usam técnicas como o pré-busca de dados, em que os dados são antecipadamente carregados para a memória cache, ou o uso de memória cache maior e mais eficiente para reduzir a latência de acesso à memória principal.
+
+5.
+O balanceamento de carga em sistemas com múltiplos processadores é o processo de distribuir as tarefas de forma equitativa entre os processadores disponíveis para otimizar a utilização de recursos. O objetivo é evitar que alguns processadores fiquem sobrecarregados enquanto outros estão subutilizados. Isso é feito monitorando a carga de trabalho de cada processador e movendo tarefas ou processos entre os processadores conforme necessário para alcançar uma distribuição equilibrada.
+
+6.
+Hyper-Threading é uma tecnologia desenvolvida pela Intel para melhorar o desempenho de CPUs. Ela permite que um único núcleo físico da CPU seja apresentado como dois núcleos lógicos para o sistema operacional. Isso significa que a CPU pode executar duas threads simultaneamente, compartilhando recursos como caches e pipelines de execução. Embora não seja o mesmo que ter núcleos físicos adicionais, o Hyper-Threading pode melhorar o desempenho em cargas de trabalho multitarefa, permitindo que a CPU execute mais eficientemente várias threads.

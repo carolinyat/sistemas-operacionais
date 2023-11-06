@@ -5,12 +5,12 @@ import random # módulo random, usado para gerar números aleatórios
 # Função que simula o processamento de um pedido
 def processar_pedido(numero_pedido):
     print(f"Processando pedido {numero_pedido}")
-    tempo_processamento = random.randint(1, 5) # tempo de processamento aleatório entre 1s a 5s
+    tempo_processamento = random.randint(1, 10) # tempo de processamento aleatório entre 1s a 5s
     time.sleep(tempo_processamento) # simulação do tempo de processamento
     print(f"Pedido {numero_pedido} pronto em {tempo_processamento} segundos")
 
 # Número de pedidos a serem processados
-numero_pedidos = 5
+numero_pedidos = 20
 
 # Cria uma lista de threads
 threads = []
